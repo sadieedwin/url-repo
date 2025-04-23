@@ -1,0 +1,70 @@
+from flask import Flask, render_template, redirect, url_for, request, flash
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///links.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key = 'your_secret_key'  # Needed for flashing messages!
+
+db = SQLAlchemy(app)
+
+# Import models after db is initialized
+from models import Link
+
+# 👉 Route for Home (list of links)
+@app.route('/')
+def home():
+    links = Link.query.order_by(Link.created_at.desc()).all()
+    return render_template('home.html', links=links)
+
+# 👉 Route for Adding a New Link
+@app.route('/add', methods=['GET', 'POST'])
+def add_link():
+    if request.method == 'POST':
+        title = request.form['title']
+        url_link = request.form['url']
+        description = request.form['description']
+        tags = request.form['tags']
+
+        if not title or not url_link:
+            flash('Title and URL are required!', 'danger')
+            return redirect(url_for('add_link'))
+
+        new_link = Link(title=title, url=url_link, description=description, tags=tags)
+        db.session.add(new_link)
+        db.session.commit()
+        flash('Link added successfully!', 'success')
+        return redirect(url_for('home'))
+
+    return render_template('add_link.html')
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5001, debug=True)
+
+# Edit a link
+@app.route('/edit/<int:id>', methods=['GET', 'POST'])
+def edit_link(id):
+    link = Link.query.get_or_404(id)
+
+    if request.method == 'POST':
+        link.title = request.form['title']
+        link.url = request.form['url']
+        link.description = request.form['description']
+        link.tags = request.form['tags']
+
+        db.session.commit()
+        flash('Link updated successfully!', 'success')
+        return redirect(url_for('home'))
+
+    return render_template('edit_link.html', link=link)
+
+# Delete a link
+@app.route('/delete/<int:id>', methods=['POST'])
+def delete_link(id):
+    link = Link.query.get_or_404(id)
+    db.session.delete(link)
+    db.session.commit()
+    flash('Link deleted successfully!', 'success')
+    return redirect(url_for('home'))
+
