@@ -26,11 +26,6 @@ source venv/bin/activate
 ```
 pip install -r requirements.txt
 ```
-
-If you don't have a requirements.txt yet, create one with:
-```
-pip freeze > requirements.txt
-```
 4. Initialize the Database
 ```flask shell
 >>> from app import db
