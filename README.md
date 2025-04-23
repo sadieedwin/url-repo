@@ -1,5 +1,5 @@
 # URL Repository
-_A simple Flask web application for saving, organizing, and viewing useful links._
+_A simple web application for saving, organizing, and viewing useful links._
 
 ## Why this project?
 _As someone in Ops, we constantly rely on links—runbooks, monitoring dashboards, internal tools, Jira tickets, Confluence pages, knowledge base articles, vendor portals, etc. Having them all in one searchable, customizable place instead of scattered across browser bookmarks is a huge productivity boost._
