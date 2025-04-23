@@ -16,6 +16,8 @@ _As someone in Ops, we constantly rely on links—runbooks, monitoring dashboard
 - Database: SQLite for now
 - OS: Ubuntu (Linux) - EC2 instance
 
+## Screenshots
+![image](https://github.com/user-attachments/assets/29f50a1e-eb41-4f2c-ae5a-12b7883a0459)
 ## Setup Instructions
 1. Clone the Repository
 2. Create and Activate a Virtual Environment
