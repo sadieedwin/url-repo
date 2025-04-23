@@ -59,5 +59,6 @@ sudo apt install tmux -y
   - Edit existing link
   - Delete link
   - Search feature
+  - Filtering via tags
   - Pagination
   - Home button
