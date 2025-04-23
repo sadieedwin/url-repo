@@ -15,7 +15,7 @@ from models import Link
 def home():
     search_query = request.args.get('search')
     tag_filter = request.args.get('tag')
-    page = request.args.get('page', 1, type=int)  # 👈 Add this
+    page = request.args.get('page', 1, type=int) 
 
     query = Link.query
 
@@ -29,7 +29,7 @@ def home():
     if tag_filter:
         query = query.filter(Link.tags.ilike(f'%{tag_filter}%'))
 
-    links = query.order_by(Link.created_at.desc()).paginate(page=page, per_page=5)  # 👈 Paginate here
+    links = query.order_by(Link.created_at.desc()).paginate(page=page, per_page=10)  # Paginate here
 
     all_tags = get_all_tags()
 
@@ -55,7 +55,7 @@ def get_all_tags():
             tags.extend([t.strip() for t in link.tags.split(',')])
     return sorted(set(tags))  # Remove duplicates and sort
 
-# 👉 Add Link
+# Add Link
 @app.route('/add', methods=['GET', 'POST'])
 def add_link():
     if request.method == 'POST':
@@ -76,7 +76,7 @@ def add_link():
 
     return render_template('add_link.html')
 
-# 👉 Edit Link
+# Edit Link
 @app.route('/edit/<int:id>', methods=['GET', 'POST'])
 def edit_link(id):
     link = Link.query.get_or_404(id)
@@ -93,7 +93,7 @@ def edit_link(id):
 
     return render_template('edit_link.html', link=link)
 
-# 👉 Delete Link
+# Delete Link
 @app.route('/delete/<int:id>', methods=['POST'])
 def delete_link(id):
     link = Link.query.get_or_404(id)
