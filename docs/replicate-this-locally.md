@@ -16,15 +16,15 @@ python -m venv venv
 source venv/bin/activate   # Mac/Linux
 venv\Scripts\activate      # Windows
 ```
-4. Install Flask and SQLAlchemy
+4. **Install Flask and SQLAlchemy**
 ```
 pip install flask flask_sqlalchemy
 ```
 
-5. Add your project files
+5. **Add your project files**
 Copy your app.py, models.py, and templates/ folder into the url_repo folder.
 
-6. Create the database
+6. **Create the database**
 Open Python shell:
 ```python
 >>> from app import db, app
@@ -34,11 +34,11 @@ Open Python shell:
 >>> exit()
 ```
 
-7. Run the Flask app
+7. **Run the Flask app**
 ```
 flask run
 ```
-8. Access your app
+8. **Access your app**
 Open your browser and visit:
 **http://127.0.0.1:5000**
 
