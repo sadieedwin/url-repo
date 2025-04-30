@@ -92,3 +92,14 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -File "C:\Users\User.Name\Desktop\URL Repo\flask_background.ps1"
 ```
+
+**Additional step to add this as startup app**
+- Add the shortcut file into this folder:
+```
+C:\Users\User.Name\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+```
+or
+```
+Run: shell:startup (then add the shortcut file)
+```
+
